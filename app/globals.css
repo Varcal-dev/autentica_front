@@ -1,26 +1,134 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: oklch(1 0 0); /* #FFFFFF - Clean white background */
+  --foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray for text */
+  --card: oklch(0.98 0.01 0); /* #F9F9F9 - Very light gray for cards */
+  --card-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray for card text */
+  --popover: oklch(1 0 0); /* #FFFFFF - White for popovers */
+  --popover-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray for popover text */
+  --primary: oklch(0.85 0.12 340); /* #FFB3D9 - Soft pink primary color */
+  --primary-foreground: oklch(1 0 0); /* #FFFFFF - White text on primary */
+  --secondary: oklch(0.9 0.08 15); /* #FFD1DC - Light peach for secondary */
+  --secondary-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray for secondary text */
+  --muted: oklch(0.88 0.06 320); /* #E3B0D2 - Pastel lavender for muted */
+  --muted-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray for muted text */
+  --accent: oklch(0.9 0.05 240); /* #C5E1F5 - Pastel blue accent color */
+  --accent-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray text on accent */
+  /* Adding gold accent color for brand identity */
+  --gold: oklch(0.75 0.12 80); /* #D4AF37 - Soft gold accent */
+  --gold-foreground: oklch(0.25 0 0); /* #374151 - Dark text on gold */
+  --destructive: oklch(0.7 0.15 15); /* #FF6B6B - Soft red for destructive actions */
+  --destructive-foreground: oklch(1 0 0); /* #FFFFFF - White text on destructive */
+  --border: oklch(0.88 0.06 320); /* #E3B0D2 - Pastel lavender borders */
+  --input: oklch(0.98 0.01 0); /* #F9F9F9 - Light gray input fields */
+  --ring: oklch(0.85 0.12 340 / 0.5); /* Soft pink ring with opacity */
+  --chart-1: oklch(0.85 0.12 340); /* Soft pink */
+  --chart-2: oklch(0.9 0.08 15); /* Light peach */
+  --chart-3: oklch(0.9 0.05 240); /* Pastel blue */
+  --chart-4: oklch(0.88 0.06 320); /* Pastel lavender */
+  --chart-5: oklch(0.98 0.01 0); /* Very light gray */
+  --radius: 0.75rem; /* Increased border radius for more rounded, cute appearance */
+  --sidebar: oklch(0.98 0.01 0); /* #F9F9F9 - Light gray sidebar */
+  --sidebar-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray */
+  --sidebar-primary: oklch(0.85 0.12 340); /* #FFB3D9 - Soft pink */
+  --sidebar-primary-foreground: oklch(1 0 0); /* #FFFFFF - White text */
+  --sidebar-accent: oklch(0.9 0.05 240); /* #C5E1F5 - Pastel blue */
+  --sidebar-accent-foreground: oklch(0.25 0 0); /* #374151 - Softer dark gray */
+  --sidebar-border: oklch(0.88 0.06 320); /* #E3B0D2 - Pastel lavender */
+  --sidebar-ring: oklch(0.85 0.12 340 / 0.5); /* Soft pink ring */
+}
+
+.dark {
+  --background: oklch(0.12 0.02 320); /* Very dark with slight purple tint */
+  --foreground: oklch(0.95 0.01 340); /* Very light pink-tinted text */
+  --card: oklch(0.15 0.02 320); /* Dark card background with purple tint */
+  --card-foreground: oklch(0.95 0.01 340); /* Light pink-tinted text */
+  --popover: oklch(0.15 0.02 320); /* Dark popover background */
+  --popover-foreground: oklch(0.95 0.01 340); /* Light pink-tinted text */
+  --primary: oklch(0.75 0.15 340); /* Brighter soft pink for dark mode */
+  --primary-foreground: oklch(0.12 0.02 320); /* Dark text on primary */
+  --secondary: oklch(0.2 0.03 320); /* Dark secondary with purple tint */
+  --secondary-foreground: oklch(0.95 0.01 340); /* Light text */
+  --muted: oklch(0.2 0.03 320); /* Dark muted background */
+  --muted-foreground: oklch(0.7 0.02 340); /* Medium light text */
+  --accent: oklch(0.8 0.08 240); /* Brighter pastel blue for dark mode */
+  --accent-foreground: oklch(0.12 0.02 320); /* Dark text on accent */
+  /* Adding gold accent for dark mode */
+  --gold: oklch(0.65 0.15 80); /* Brighter gold for dark mode */
+  --gold-foreground: oklch(0.95 0.01 340); /* Light text on gold */
+  --destructive: oklch(0.6 0.2 15); /* Soft red for dark mode */
+  --destructive-foreground: oklch(0.95 0.01 340); /* Light text */
+  --border: oklch(0.2 0.03 320); /* Dark border with purple tint */
+  --input: oklch(0.2 0.03 320); /* Dark input background */
+  --ring: oklch(0.75 0.15 340 / 0.5); /* Bright pink ring for dark mode */
+  --chart-1: oklch(0.75 0.15 340); /* Bright soft pink */
+  --chart-2: oklch(0.8 0.1 15); /* Bright peach */
+  --chart-3: oklch(0.8 0.08 240); /* Bright pastel blue */
+  --chart-4: oklch(0.7 0.1 320); /* Medium pastel lavender */
+  --chart-5: oklch(0.6 0.05 340); /* Darker pink */
+  --sidebar: oklch(0.18 0.02 320); /* Slightly lighter dark sidebar */
+  --sidebar-foreground: oklch(0.95 0.01 340); /* Light text */
+  --sidebar-primary: oklch(0.75 0.15 340); /* Bright soft pink */
+  --sidebar-primary-foreground: oklch(0.12 0.02 320); /* Dark text */
+  --sidebar-accent: oklch(0.2 0.03 320); /* Dark accent */
+  --sidebar-accent-foreground: oklch(0.95 0.01 340); /* Light text */
+  --sidebar-border: oklch(0.2 0.03 320); /* Dark border */
+  --sidebar-ring: oklch(0.75 0.15 340 / 0.5); /* Bright pink ring */
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  /* Adding gold color to theme */
+  --color-gold: var(--gold);
+  --color-gold-foreground: var(--gold-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  body {
+    @apply bg-background text-foreground;
+  }
 }
